@@ -9,7 +9,9 @@ on:
 
   workflow_dispatch:
 
-
+env:
+  DAY_OF_WEEK: Monday
+  user: Vivek
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,26 +19,26 @@ jobs:
       - uses: actions/checkout@v3
 
       - name : Run a one-line script
-        run: echo Hello, world!
+        run: echo Hello, ${{ env.user }}!
 
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
       
-  build-api-app:
-    needs: build
-    runs-on: windows-latest
-    steps:
-      - run: echo Hello, windows!
+  # build-api-app:
+  #   needs: build
+  #   runs-on: windows-latest
+  #   steps:
+  #     - run: echo Hello, windows!
 
-  packaging:
-    needs: [build, build-api-app]
-    runs-on: macos-latest
-    steps:
-      - run: echo Hello, macos!
+  # packaging:
+  #   needs: [build, build-api-app]
+  #   runs-on: macos-latest
+  #   steps:
+  #     - run: echo Hello, macos!
 
-  build-db:
-    runs-on: windows-latest
-    steps:
-      - run: echo Hello, windows!
+  # build-db:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - run: echo Hello, windows!
